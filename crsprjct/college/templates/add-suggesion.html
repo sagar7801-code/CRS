@@ -1,0 +1,194 @@
+﻿{% extends 'header.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="csrf-token" content="iL8hUXsdXy71MbOZjq4fWUv4KGPZnJ7k17P7RClL">
+        <link rel="icon" href="https://thememakker.com/templates/oreo/hospital/laravel/public/favicon.ico" type="image/x-icon"> <!-- Favicon-->
+        <title>Dashboard - CRS</title>
+        <meta name="description" content="Oero Laravel">
+        <meta name="author" content="Oero Laravel">
+                
+        {% block css %}      
+        <link rel="stylesheet" href="{% static 'assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets\plugins\jvectormap\jquery-jvectormap-2.0.3.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets\plugins\morrisjs\morris.min.css' %}">
+                <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'assets\css\main.css' %}">
+        <link rel="stylesheet" href="{% static 'assets\css\color_skins.css' %}">
+        {% endblock %} 
+    </head>
+        <body class="theme-blush">
+            {% block content %}
+<section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Add Patient <small class="text-muted">Welcome to Campus Recruitment System</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                                                    
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                                                            <li class="breadcrumb-item">Patients</li>
+                                                                                        <li class="breadcrumb-item active">Add Patient</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="header">
+                                <h2><strong>Member</strong> Information</h2>
+                            </div>
+                            <div class="tab-pane body" id="Account">
+                                <!-- Form Tag -->
+                                <form action="{% url 'add-suggesion' %}" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-12">
+                                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter a Subject">
+                                        </div>
+                                        <!-- <div class="col-lg-12 col-md-12">
+                                            <label for="post">Choose post :</label><br>
+
+                                                <select name="post" id="post">
+                                                    <option value="volvo" selected disabled>-- SELECTED --</option>
+                                                    <option value="html">Html</option>
+                                                    <option value="css">Css</option>
+                                                    <option value="react">React</option>
+                                                    <option value="node js">Node Js</option>
+                                                    <option value="ui/ux">UI/UX</option>
+                                                    <option value="photoshop">Photoshop</option>
+                                                    <option value="c">C</option>
+                                                    <option value="c++">C++</option>
+                                                    <option value="python">Python</option>
+                                                    <option value="java">Java</option>
+                                                    <option value="php">Php</option>
+                                                </select>
+                                        </div> -->
+                                    </div><br>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12">
+                                            <input type="text" class="form-control" id="messege" name="messege" placeholder="Enter a Messege" onblur="validateTitle()">
+                                        </div>
+                                    </div>
+                                        <!-- <div class="col-lg-6 col-md-12">
+                                            <input type="text" class="form-control" id="l_name" name="hr_l_name" placeholder="HR Last Name" onblur="validateTitle()">
+                                        </div>
+                                    </div><br>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-12">
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact No" onblur="checkContact()">
+                                        </div>
+                                    </div><br>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12">
+                                            <input type="text" class="form-control" id="urll" name="url" placeholder="Website Link" required>
+                                        </div>
+                                    </div><br>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group m-b-10">
+                                                <input rows="4" class="form-control no-resize" id="address" name="address" placeholder="Company Address...">
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <lable><b>Upload Company Picture</b></lable>
+                                                    <input type="file" name="picture" class="form-control"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><br> -->
+                                    <div class="row clearfix">
+                                        <div class="col-lg-1 col-md-12">
+                                            <input type="submit" class="btn btn-primary btn-round" id="submit" value="Submit">
+                                        </div>
+                                        <div class="col-lg-1 col-md-12">
+                                            <a href="" class="btn btn-primary btn-round">Cancel</a>
+                                        </div>
+                                    </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
+        <!-- Scripts -->
+        <script src="{% static 'assets\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'assets\bundles\vendorscripts.bundle.js' %}"></script>
+
+        <script src="{% static 'assets\bundles\mainscripts.bundle.js' %}"></script>
+        <script src="{% static 'assets\bundles\morrisscripts.bundle.js' %}"></script>
+        <script src="{% static 'assets\bundles\jvectormap.bundle.js' %}"></script>
+        <script src="{% static 'assets\bundles\knob.bundle.js' %}"></script>
+        <script src="{% static 'assets\js\pages\index.js' %}"></script>
+
+
+
+    <script>
+        $("#email").blur(function() {
+            var email = $(this).val();
+
+            $.ajax({
+                url: "{% url 'emailajax' %}",
+                data: {
+                    'email': email
+                },
+                dataType: 'json',
+
+                success: function(data) {
+                    if (!data.is_taken) {
+                        $('#email').css('color', 'green');
+                        $('#submit').removeAttr("disabled")
+                        
+
+                        // $('#email').val("Email Does Not Exist").css("color", "red");
+                    } else {
+                        $('#email').val("").css("color", "red");
+                        $('#email').addClass('inputredplace');
+                        $('#email').attr('placeholder', 'Email Does Not Exist').css("color","red");
+                        $('#submit').attr("disabled", true)
+                    }
+                }
+            });
+        });
+    </script>    
+
+    <script>
+        $(function () {
+        //Datetimepicker plugin
+        $('.datetimepicker').bootstrapMaterialDatePicker({
+            format: 'dddd DD MMMM YYYY - HH:mm',
+            clearButton: true,
+            weekStart: 1
+        });
+    });
+    </script>
+				<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+    </body>
+</html>

@@ -1,0 +1,174 @@
+﻿{% extends 'header.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="csrf-token" content="iL8hUXsdXy71MbOZjq4fWUv4KGPZnJ7k17P7RClL">
+        <link rel="icon" href="https://thememakker.com/templates/oreo/hospital/laravel/public/favicon.ico" type="image/x-icon"> <!-- Favicon-->
+        <title>Dashboard - CRS</title>
+        <meta name="description" content="Oero Laravel">
+        <meta name="author" content="Oero Laravel">
+                
+        {% block css %}      
+        <link rel="stylesheet" href="{% static 'assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets\plugins\jvectormap\jquery-jvectormap-2.0.3.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets\plugins\morrisjs\morris.min.css' %}">
+                <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'assets\css\main.css' %}">
+        <link rel="stylesheet" href="{% static 'assets\css\color_skins.css' %}">
+        {% endblock %} 
+    </head>
+        <body class="theme-blush">
+            {% block content %}
+        <section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Profile <small class="text-muted">Welcome to Campus Recruitment System</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                                                    
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                                                                                        <li class="breadcrumb-item active">Profile</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix profile-page">
+        <div class="col-lg-4 col-md-12">
+            <div class="card profile-header">
+                <div class="body text-center">
+                    <div class="profile-image"> <img src="{{context.cid.c_picture.url}}" alt=""> </div>
+                    <div>
+                        <h4 class="m-b-0"><strong>{{context.cid.f_name}} {{context.cid.l_name}}</strong></h4>
+                        <span class="job_post">{{context.cid.user_id.role}}</span>
+                    </div>
+                </div>                    
+            </div>                               
+                          
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="card">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Account">Account</a></li>                        
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane body active" id="about">
+                        
+                        <h6>Your Details..</h6>
+                        <hr>
+                        <ul class="list-unstyled">
+                            <li>
+                                <p><strong>College Name : </strong> {{context.cid.name}}</p>
+                            </li>
+                            <li>
+                                <p><strong>First Name : </strong> {{context.cid.f_name}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Last Name : </strong> {{context.cid.l_name}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Contact No. : </strong> {{context.cid.contact}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Email ID : </strong> {{context.cid.user_id.email}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Address : </strong> {{context.cid.address}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tab-pane body" id="Account">
+                        <form action="{% url 'profile-update' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="row clearfix">
+                            
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="College Name" name="c_name" value="{{context.cid.name}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="First Name" name="f_name" value="{{context.cid.f_name}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Last Name" name="l_name" value="{{context.cid.l_name}}">
+                                </div>
+                            </div>                                    
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Contact No." name="contact" value="{{context.cid.contact}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="E-mail" name="email" value="{{context.cid.user_id.email}}" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password" name="password" value="{{context.cid.user_id.password}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Address" name="address" value="{{context.cid.address}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <lable><b>Upload Student Picture</b></lable>
+                                <input type="file" name="c_picture" class="form-control"/> 
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary btn-round" id="submit" value="Submit">
+                            </div>
+                        
+                        </div>
+                    </form>
+                    </div>                        
+                </div>
+            </div>
+                          
+        </div>
+    </div>
+
+            </div>
+        </section>
+        {% endblock %}
+        <!-- Scripts -->
+        <script src="{% static 'assets\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'assets\bundles\vendorscripts.bundle.js' %}"></script>
+
+        <script src="{% static 'assets\bundles\mainscripts.bundle.js' %}"></script>
+        <script src="{% static 'assets\bundles\morrisscripts.bundle.js' %}"></script>
+        <script src="{% static 'assets\bundles\jvectormap.bundle.js' %}"></script>
+        <script src="{% static 'assets\bundles\knob.bundle.js' %}"></script>
+        <script src="{% static 'assets\js\pages\index.js' %}"></script>
+				<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+    </body>
+</html>
